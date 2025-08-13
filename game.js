@@ -150,5 +150,15 @@ function spawnWalls() {
     walls.create(200, 300, 'wall').setScale(2).refreshBody();
     walls.create(600, 400, 'wall').setScale(2).refreshBody();
 }
+
+function spawnPowerUp() {
+    const scene = game.scene.scenes[0];
+    const powerUp = powerUps.create(
+        Phaser.Math.Between(50, 750),
+        Phaser.Math.Between(50, 550),
+        'powerup'
+    );
+    powerUp.setCollideWorldBounds(true);
+}
 // --- Rest of the code (same as before for networking, power-ups, etc.) ---
 // [Include all previous functions: joinRoom, broadcastData, handleData, spawnPowerUp, etc.]
