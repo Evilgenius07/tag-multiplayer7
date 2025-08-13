@@ -1,0 +1,8 @@
+tag-game/
+├── index.html
+├── game.js
+├── assets/
+│   ├── player.png
+│   ├── tagger.png
+│   ├── powerup.png
+│   └── wall.png
