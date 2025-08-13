@@ -194,5 +194,17 @@ const config = {
         }
     }
 };
+
+function update() {
+    // ... movement logic ...
+    broadcastData({ 
+        type: "position", 
+        x: player.x, 
+        y: player.y 
+    });
+}
+
+console.log("Broadcasting:", data); // Inside broadcastData()
+console.log("Received:", data);    // Inside handleData()
 // --- Rest of the code (same as before for networking, power-ups, etc.) ---
 // [Include all previous functions: joinRoom, broadcastData, handleData, spawnPowerUp, etc.]
