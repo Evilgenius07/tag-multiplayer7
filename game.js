@@ -160,5 +160,39 @@ function spawnPowerUp() {
     );
     powerUp.setCollideWorldBounds(true);
 }
+
+// Add this with your other network functions
+function broadcastData(data) {
+    // Add the sender's peer ID to the data
+    data.peerId = peer.id;
+    
+    // Send to all connected peers
+    Object.values(conns).forEach(conn => {
+        try {
+            conn.send(data);
+        } catch (error) {
+            console.error("Failed to send data:", error);
+            // Remove disconnected peers
+            delete conns[conn.peer];
+        }
+    });
+
+    // For AI bots (if needed)
+    if (data.type === "position" && Object.keys(bots).length > 0) {
+        handleBotData(data);
+    }
+}
+
+const config = {
+    // ... existing config ...
+    canvas: { willReadFrequently: true },
+    physics: { 
+        default: 'arcade',
+        arcade: { 
+            debug: false,
+            gravity: { y: 0 } 
+        }
+    }
+};
 // --- Rest of the code (same as before for networking, power-ups, etc.) ---
 // [Include all previous functions: joinRoom, broadcastData, handleData, spawnPowerUp, etc.]
